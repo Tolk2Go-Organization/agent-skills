@@ -76,6 +76,10 @@ Call `POST /bookings` with the owner credential and a unique `Idempotency-Key` h
 
 For `address`, include `location` with `lat`, `lng` and `address`. For remote work, send the customer's IANA `bookingTimezone`. Save the returned `booking_id`. A new API account can have only one searching request before completing its first booking.
 
+Each request covers one `start` and `end`. For recurring appointments, such as every Monday for eight weeks, create one request per occurrence, each with its own `Idempotency-Key`, and track every returned `booking_id` separately.
+
+Only for the Conference / Simultaneous situation (slug `simultaan`): when the session lasts more than 1 hour, recommend a second interpreter. If the customer wants one, submit a separate request for the same time.
+
 ### 5. Poll responses and select
 
 Poll `GET /bookings/{booking_id}/responses` using the owner's Bearer token. An empty `responses` array means wait and poll again. Use `GET /bookings/{booking_id}` to read `polling.recommended_after_seconds` (currently 30); add backoff for transport or 5xx failures.
