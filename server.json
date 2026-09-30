@@ -1,0 +1,32 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.tolk2go/booking",
+  "title": "Tolk2Go Interpreter Booking",
+  "description": "Book and manage sworn and qualified interpreters (on-site, phone, video) for a Tolk2Go account.",
+  "version": "1.0.0",
+  "websiteUrl": "https://www.tolk2go.com/llms.txt",
+  "repository": {
+    "url": "https://github.com/Tolk2Go-Organization/agent-skills",
+    "source": "github"
+  },
+  "icons": [
+    {
+      "src": "https://www.tolk2go.com/assets/images/pro-logo.png",
+      "mimeType": "image/png"
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://api.tolk2go.com/api/v1/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Bearer <agent key>. Log in once via POST https://api.tolk2go.com/api/v1/login, then issue a key via POST /api/v1/agent-access-keys. See the repository README.",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}
